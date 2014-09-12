@@ -25,27 +25,8 @@ func main() {
 	rnd = tcod.NewRandomFromSeed(0xDEADBEEF)
 	noise = tcod.NewNoise(2, rnd)
 	pixels := Pic(dx, dy)
-	pixels = setMinToZero(pixels)
 	img := Create(pixels)
 	WriteImage("img.jpg", img)
-}
-
-func setMinToZero(pixels [][]uint8) [][]uint8 {
-	min := uint8(255)
-	for y := range pixels {
-		for x := range pixels[y] {
-			if pixels[y][x] < min {
-				min = pixels[y][x]
-			}
-
-		}
-	}
-	for y := range pixels {
-		for x := range pixels[y] {
-			pixels[y][x] = pixels[y][x] - min
-		}
-	}
-	return pixels
 }
 
 func noise1(x float64) float64 {
